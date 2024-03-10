@@ -1,25 +1,17 @@
-/*
-See the LICENSE.txt file for this sample’s licensing information.
+//ContentView.swift
 
-Abstract:
-The main interactive UI for subject-lifting effects.
-*/
-
-import PhotosUI 
+//import PhotosUI 
 import SwiftUI
 import UniformTypeIdentifiers
 import Combine
 
-
-struct ImageDocument: FileDocument {
-    static var readableContentTypes: [UTType] { [.image] } // Define the content types your document can read.
+struct ImageDocument: FileDocument { //this is necessary so far
+    static var readableContentTypes: [UTType] { [.image] } // Define the content types. I prefer not but lets do best practices.
     var image: UIImage
 
     init(image: UIImage) {
         self.image = image
     }
-
-    // Initialize your document with a configuration to read from a file.
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
               let image = UIImage(data: data) else {
@@ -27,8 +19,6 @@ struct ImageDocument: FileDocument {
         }
         self.image = image
     }
-
-    // This method is called to write your document to a file.
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         guard let data = image.pngData() else {
             throw CocoaError(.fileWriteUnknown)
@@ -60,8 +50,8 @@ struct ContentView: View {
                     if let imageData = try? Data(contentsOf: url),
                        let ciImage = CIImage(data: imageData) {
                         pipeline.inputImage = ciImage
-                        pipeline.effect = .none // Assuming you have a specific effect for background removal or just want the subject
-                        pipeline.background = .transparent // This should trigger the background removal
+                        pipeline.effect = .none // core task is background removal but this might be purposeful too
+                        pipeline.background = .transparent // This to trigger the background removal
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -86,7 +76,7 @@ struct ContentView: View {
                 showFolderPicker = true
             }
             .fileImporter(isPresented: $showFolderPicker, allowedContentTypes: [.folder], allowsMultipleSelection: false) { result in
-                // Processing a folder of images for background removal can be integrated here.
+                // Processing a folder of images for background removal to be integrated here.
                 // This requires iterating over images in the folder, processing each as done with the single file selection.
             }
         }
