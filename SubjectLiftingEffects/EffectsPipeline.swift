@@ -11,7 +11,7 @@ import CoreImage.CIFilterBuiltins
 import UIKit
 import Vision
 
-/// Presets for the subjects' visual effects.
+/// Presets fouir the subjects' visual effects.
 enum Effect: String, Equatable, CaseIterable {
     case none = "None"
     case highlight = "Highlight"
@@ -34,7 +34,7 @@ final class EffectsPipeline: ObservableObject {
     @Published var inputImage = loadImage(named: "butterfly")
 
     /// The final output image with the effects applied to the lifted subjects.
-    @Published var output: UIImage = UIImage()
+    @Published var output: UIImage? // = UIImage()
 
     /// The selected visual effect.
     @Published var effect: Effect = .none
