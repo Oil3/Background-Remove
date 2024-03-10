@@ -76,9 +76,17 @@ struct ContentView: View {
                 showFolderPicker = true
             }
             .fileImporter(isPresented: $showFolderPicker, allowedContentTypes: [.folder], allowsMultipleSelection: false) { result in
-                // Processing a folder of images for background removal to be integrated here.
-                // This requires iterating over images in the folder, processing each as done with the single file selection.
-            }
+                switch result {
+                case .success(let urls):
+                    let folderUrl = urls[0]
+//                    processingFolder = true // Show a progress view or disable buttons
+                    pipeline.processFolder(url: folderUrl) {
+//                    processingFolder = false // Hide the progress view or enable buttons
+                }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
         }
     }
+}
 }

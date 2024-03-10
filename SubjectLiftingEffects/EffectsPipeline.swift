@@ -97,6 +97,37 @@ final class EffectsPipeline: ObservableObject {
             }
         }
     }
+    func processFolder(url: URL, completion: @escaping () -> Void) {
+        let fileManager = FileManager.default
+        guard let files = try? fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil) else {
+            completion()
+            return
+        }
+
+        // Asynchronously process each image
+        DispatchQueue.global(qos: .userInitiated).async {
+            for fileURL in files {
+                if let ciImage = CIImage(contentsOf: fileURL), self.isImage(url: fileURL) {
+                    self.inputImage = ciImage
+                    self.effect = .none // You would set this based on the effect needed
+                    self.background = .transparent
+                    // Assume processImage() applies the effect to inputImage and sets output
+                    
+                    // Wait until the image is processed before continuing
+                    while self.inputImage != nil && self.output == nil {
+                        usleep(10000) // Adjust the sleep time if needed
+                    }
+                }
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    private func isImage(url: URL) -> Bool {
+        let imageExtensions = ["jpg", "jpeg", "png", "gif", "tiff", "tif", "bmp"]
+        return imageExtensions.contains(url.pathExtension.lowercased())
+    }
 }
 
 /// Applies the current effect and returns the composited image.
@@ -252,6 +283,7 @@ private func loadImage(named: String, withExtension ext: String = "jpg") -> CIIm
     }
     return image
 }
+
 
 /// Renders a CIImage onto a CGImage.
 private func render(ciImage img: CIImage) -> CGImage {
