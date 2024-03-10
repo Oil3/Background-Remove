@@ -99,25 +99,50 @@ final class EffectsPipeline: ObservableObject {
     }
     func processFolder(url: URL, completion: @escaping () -> Void) {
         let fileManager = FileManager.default
-        guard let files = try? fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil) else {
+        let resultsFolderName = url.lastPathComponent + "Results"
+        let resultsFolderUrl = url.appendingPathComponent(resultsFolderName)
+        
+        do {
+            try fileManager.createDirectory(at: resultsFolderUrl, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print("Failed to create results folder: \(error.localizedDescription)")
             completion()
             return
-        }
-
+    }
         // Asynchronously process each image
         DispatchQueue.global(qos: .userInitiated).async {
+           guard let files = try? fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil) else {
+                completion()
+                return
+            }
+                        
             for fileURL in files {
                 if let ciImage = CIImage(contentsOf: fileURL), self.isImage(url: fileURL) {
                     self.inputImage = ciImage
-                    self.effect = .none // You would set this based on the effect needed
+                    self.effect = .none // for later
                     self.background = .transparent
-                    // Assume processImage() applies the effect to inputImage and sets output
+                    // processImage() applies the effect to inputImage and sets output
                     
-                    // Wait until the image is processed before continuing
+                    // Wait until the image is processed before continuing??????????
                     while self.inputImage != nil && self.output == nil {
                         usleep(10000) // Adjust the sleep time if needed
                     }
                 }
+                let saveFilename = fileURL.deletingPathExtension().lastPathComponent + ".png"
+                let saveUrl = resultsFolderUrl.appendingPathComponent(saveFilename)
+
+                if let processedImage = self.output, let imageData = processedImage.pngData() {
+                    let saveUrl = resultsFolderUrl.appendingPathComponent(fileURL.lastPathComponent)
+                    do {
+                        try imageData.write(to: saveUrl)
+                        print("Saved processed image to \(saveUrl.path)")
+                    } catch {
+                        print("Failed to save processed image: \(error.localizedDescription)")
+                    }
+                }
+                self.output = nil
+                
+                
             }
             DispatchQueue.main.async {
                 completion()

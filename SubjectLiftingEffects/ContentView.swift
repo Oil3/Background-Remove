@@ -7,6 +7,7 @@ import Combine
 
 struct ImageDocument: FileDocument { //this is necessary so far
     static var readableContentTypes: [UTType] { [.image] } // Define the content types. I prefer not but lets do best practices.
+    static var writableContentTypes: [UTType] { [.png, .gif, .image, .movie] }
     var image: UIImage
 
     init(image: UIImage) {
@@ -31,6 +32,7 @@ struct ContentView: View {
     @State private var showFilePicker = false
     @State private var showSavePanel = false
     @State private var showFolderPicker = false
+    @State private var processingFolder = false
 
     var body: some View {
         VStack {
@@ -63,7 +65,7 @@ struct ContentView: View {
                     showSavePanel = true
                 }
             }
-            .fileExporter(isPresented: $showSavePanel, document: ImageDocument(image: pipeline.output ?? UIImage()), contentType: .image, defaultFilename: "ResultImage") { result in
+            .fileExporter(isPresented: $showSavePanel, document: ImageDocument(image: pipeline.output ?? UIImage()), contentType: .png) { result in
                 switch result {
                 case .success(let url):
                     print("Saved to \(url)")
@@ -79,9 +81,9 @@ struct ContentView: View {
                 switch result {
                 case .success(let urls):
                     let folderUrl = urls[0]
-//                    processingFolder = true // Show a progress view or disable buttons
+                    processingFolder = true // Show a progress view or disable buttons
                     pipeline.processFolder(url: folderUrl) {
-//                    processingFolder = false // Hide the progress view or enable buttons
+                    processingFolder = false // Hide the progress view or enable buttons
                 }
                 case .failure(let error):
                     print(error.localizedDescription)

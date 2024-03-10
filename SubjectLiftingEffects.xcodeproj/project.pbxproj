@@ -22,6 +22,7 @@
 		726597A72B9DAA230013E9E6 /* SubjectLiftingEffects.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SubjectLiftingEffects.entitlements; sourceTree = "<group>"; };
 		726597A82B9DAC640013E9E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPipeline.swift; sourceTree = "<group>"; };
+		726597AE2B9E74070013E9E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9F31D77157C059BBBC8EBB33 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		D64A11F029FB3D7800549AC2 /* SubjectLiftingEffects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubjectLiftingEffects.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +77,7 @@
 		D64A11F229FB3D7800549AC2 /* SubjectLiftingEffects */ = {
 			isa = PBXGroup;
 			children = (
+				726597AE2B9E74070013E9E6 /* Info.plist */,
 				726597A72B9DAA230013E9E6 /* SubjectLiftingEffects.entitlements */,
 				D66BEF2F29FB43710010F20F /* Images */,
 				D64A11F329FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift */,
@@ -331,6 +333,7 @@
 				DEVELOPMENT_TEAM = 46WUYUUA8V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SubjectLiftingEffects/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -368,6 +371,7 @@
 				DEVELOPMENT_TEAM = 46WUYUUA8V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SubjectLiftingEffects/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
