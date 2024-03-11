@@ -111,7 +111,7 @@ struct ContentView: View {
                     let folderUrl = urls[0]
                     processingFolder = true // Show a progress view or disable buttons
                     pipeline.processFolder(url: folderUrl) {
-//                    processingFolder = false // Hide the progress view or enable buttons
+                    processingFolder = false // Hide the progress view or enable buttons
                 }
                 case .failure(let error):
                     print(error.localizedDescription)
