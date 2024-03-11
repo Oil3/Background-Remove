@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72304D5B2B9EF09700106E15 /* GIFProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72304D5A2B9EF09600106E15 /* GIFProcessor.swift */; };
 		726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597A82B9DAC640013E9E6 /* ViewController.swift */; };
-		726597AB2B9DBA160013E9E6 /* VideoPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */; };
 		726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */; };
 		D64A11F429FB3D7800549AC2 /* BackgroundRemoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F329FB3D7800549AC2 /* BackgroundRemoverApp.swift */; };
 		D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F529FB3D7800549AC2 /* ContentView.swift */; };
@@ -18,9 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72304D5A2B9EF09600106E15 /* GIFProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFProcessor.swift; sourceTree = "<group>"; };
 		726597A72B9DAA230013E9E6 /* BackgroundRemover.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BackgroundRemover.entitlements; sourceTree = "<group>"; };
 		726597A82B9DAC640013E9E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPipeline.swift; sourceTree = "<group>"; };
 		726597AE2B9E74070013E9E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D64A11F029FB3D7800549AC2 /* BackgroundRemover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackgroundRemover.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,7 +70,7 @@
 				D64A11F529FB3D7800549AC2 /* ContentView.swift */,
 				726597A82B9DAC640013E9E6 /* ViewController.swift */,
 				D64A120129FB3EFC00549AC2 /* EffectsPipeline.swift */,
-				726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */,
+				72304D5A2B9EF09600106E15 /* GIFProcessor.swift */,
 				D64A11F729FB3D7900549AC2 /* Assets.xcassets */,
 			);
 			path = BackgroundRemover;
@@ -158,10 +158,10 @@
 			files = (
 				D64A120229FB3EFC00549AC2 /* EffectsPipeline.swift in Sources */,
 				D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */,
+				72304D5B2B9EF09700106E15 /* GIFProcessor.swift in Sources */,
 				726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */,
 				726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */,
 				D64A11F429FB3D7800549AC2 /* BackgroundRemoverApp.swift in Sources */,
-				726597AB2B9DBA160013E9E6 /* VideoPipeline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

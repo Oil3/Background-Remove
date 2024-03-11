@@ -29,17 +29,21 @@ struct ImageDocument: FileDocument { //this is necessary so far
 }
 struct ContentView: View {
     @StateObject private var pipeline = EffectsPipeline()
+    @StateObject private var gifProcessor = GIFProcessor()
     @State private var showFilePicker = false
     @State private var showSavePanel = false
     @State private var showFolderPicker = false
     @State private var processingFolder = false
+    @State private var showGIFPicker = false
+    @State private var selectedGIFURL: URL?
 
     var body: some View {
         NavigationView {
             SidebarView(showFilePicker: $showFilePicker,
                         showSavePanel: $showSavePanel,
                         showFolderPicker: $showFolderPicker,
-                        processingFolder: $processingFolder)
+                        processingFolder: $processingFolder,
+                        showGIFPicker: $showGIFPicker)
                         
             if let outputImage = pipeline.output {
                 Image(uiImage: outputImage)
@@ -80,17 +84,34 @@ struct ContentView: View {
                     print(error.localizedDescription)
                 }
             }
-
-            Button("Process Folder") {
-                showFolderPicker = true
+            
+            .fileImporter(
+                isPresented: $showGIFPicker,
+                allowedContentTypes: [.image], // Or a more specific type if desired
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    if let url = urls.first, url.pathExtension.lowercased() == "gif" {
+                        selectedGIFURL = url
+                        gifProcessor.loadGIF(url: url) // Load the selected GIF
+                    }
+                case .failure(let error):
+                    print("File selection error: \(error.localizedDescription)")
+                }
             }
+
+//            Button("Process Folder") {
+//                showFolderPicker = true
+//            }
+            
             .fileImporter(isPresented: $showFolderPicker, allowedContentTypes: [.folder], allowsMultipleSelection: false) { result in
                 switch result {
                 case .success(let urls):
                     let folderUrl = urls[0]
                     processingFolder = true // Show a progress view or disable buttons
                     pipeline.processFolder(url: folderUrl) {
-                    processingFolder = false // Hide the progress view or enable buttons
+//                    processingFolder = false // Hide the progress view or enable buttons
                 }
                 case .failure(let error):
                     print(error.localizedDescription)

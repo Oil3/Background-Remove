@@ -8,7 +8,8 @@ struct SidebarView: View {
     @Binding var showSavePanel: Bool
     @Binding var showFolderPicker: Bool
     @Binding var processingFolder: Bool
-    
+    @Binding var showGIFPicker: Bool
+
     var body: some View {
         List {
             Button("Choose from Files") {
@@ -18,7 +19,9 @@ struct SidebarView: View {
             Button("Save Result Image") {
                 showSavePanel = true
             }
-
+            Button("Load GIF") {
+                showGIFPicker = true
+            }
             Button("Process Folder") {
                 showFolderPicker = true
             }
