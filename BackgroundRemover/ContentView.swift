@@ -6,7 +6,7 @@ import UniformTypeIdentifiers
 import Combine
 
 struct ImageDocument: FileDocument { //this is necessary so far
-    static var readableContentTypes: [UTType] { [.image] } // Define the content types. I prefer not but lets do best practices.
+    static var readableContentTypes: [UTType] { [.image, .movie] } // Define the content types. I prefer not but lets do best practices.
     static var writableContentTypes: [UTType] { [.png, .gif, .image, .movie] }
     var image: UIImage
 
@@ -83,7 +83,7 @@ struct ContentView: View {
                     print(error.localizedDescription)
                 }
             }
-            
+//            
 //            .fileImporter(
 //                isPresented: $showGIFPicker,
 //                allowedContentTypes: [.image], // Or a more specific type if desired
@@ -91,18 +91,18 @@ struct ContentView: View {
 //            ) { result in
 //                switch result {
 //                case .success(let urls):
-//                    if let url = urls.first, url.pathExtension.lowercased() == "gif" {
+//                    let url = urls[0]
 //                        selectedGIFURL = url
-//                        ContentGifView.extractGIFFrames(url) // Load the selected GIF
+//                        ContentGifView.extractGIFFrames(url) // Load the serlected GIF
 //                    }
 //                case .failure(let error):
 //                    print("File selection error: \(error.localizedDescription)")
 //                }
-//            }
+//            
 
-//            Button("Process Folder") {
-//                showFolderPicker = true
-//            }
+            Button("Process Folder") {
+                showFolderPicker = true
+            }
             
             .fileImporter(isPresented: $showFolderPicker, allowedContentTypes: [.folder], allowsMultipleSelection: false) { result in
                 switch result {

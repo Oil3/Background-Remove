@@ -5,49 +5,48 @@ import MobileCoreServices
 import ImageIO
 
 struct ContentGifView: View {
-    @State private var showFilePicker = false
+    @State private var showGIFPicker = false
     @State private var showFolderPicker = false
     @State private var outputDirectory: URL?
     @ObservedObject var effectsPipeline = EffectsPipeline()
-    
 
     var body: some View {
         VStack {
             Button("Select GIF") {
-                showFilePicker = true
+                showGIFPicker = true
             }
+            .fileImporter(
+                isPresented: $showGIFPicker,
+                allowedContentTypes: [.gif],
+                allowsMultipleSelection: false
+            ) { result in
+                handleFileSelection(result: result)
+            }
+
             Button("Process Folder") {
                 showFolderPicker = true
+            }
+            .fileImporter(
+                isPresented: $showFolderPicker,
+                allowedContentTypes: [.folder],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    let folderURL = urls[0]
+                    effectsPipeline.processFolder(url: folderURL) {
+                        print("Folder processing completed.")
+                    }
+                case .failure(let error):
+                    print("Error selecting folder: \(error.localizedDescription)")
+                }
             }
             
             if let outputDirectory = outputDirectory {
                 Text("Output Directory: \(outputDirectory.path)")
             }
         }
-        .fileImporter(
-            isPresented: $showFilePicker,
-            allowedContentTypes: [.gif],
-            allowsMultipleSelection: false
-        ) { result in
-            handleFileSelection(result: result)
-        }
-        .fileImporter(
-            isPresented: $showFolderPicker,
-            allowedContentTypes: [.folder],
-            allowsMultipleSelection: false
-        ) { result in
-            switch result {
-            case .success(let urls):
-                let folderURL = urls[0]
-                effectsPipeline.processFolder(url: folderURL) {
-                    print("Folder processing completed.")
-                }
-            case .failure(let error):
-                print("Error selecting folder: \(error.localizedDescription)")
-            }
-        }
-}
-
+    }
 
     private func handleFileSelection(result: Result<[URL], Error>) {
         switch result {
@@ -64,8 +63,7 @@ struct ContentGifView: View {
         case .failure(let error):
             print("Error selecting file: \(error.localizedDescription)")
         }
-    
-}
+    }
 
     func extractGIFFrames(gifURL: URL, outputDirectory: URL) {
         guard let source = CGImageSourceCreateWithURL(gifURL as CFURL, nil) else {
