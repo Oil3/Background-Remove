@@ -11,7 +11,7 @@ import CoreImage.CIFilterBuiltins
 import UIKit
 import Vision
 
-/// Presets fouir the subjects' visual effects.
+/// Presets for the subjects' visual effects.
 enum Effect: String, Equatable, CaseIterable {
     case none = "None"
     case highlight = "Highlight"
@@ -31,7 +31,7 @@ enum Background: String, Equatable, CaseIterable {
 final class EffectsPipeline: ObservableObject {
 
     /// The source image for the effects pipeline.
-    @Published var inputImage = loadImage(named: "butterfly")
+    @Published var inputImage = loadImage(named: "sunset")
 
     /// The final output image with the effects applied to the lifted subjects.
     @Published var output: UIImage? // = UIImage()
@@ -45,23 +45,15 @@ final class EffectsPipeline: ObservableObject {
     /// An optional normalized point for selecting a subject instance.
     @Published var subjectPosition: CGPoint? = nil
 
-    private var processingQueue = DispatchQueue(label: "EffectsProcessing")
+    private var processingQueue = DispatchQueue(label: "EffectsProcessing", attributes: .concurrent)
     private var cancellables: [AnyCancellable] = []
 
-    init() {
         // Regenerate the composite when the pipeline input changes.
-        Publishers
-            .CombineLatest4(
-                $inputImage,
-                $effect,
-                $background,
-                $subjectPosition)
-            .sink { (inputImage, effect, background, subjectPosition) in
-                self.regenerate(
-                    usingInputImage: inputImage,
-                    effect: effect,
-                    background: background,
-                    subjectPosition: subjectPosition)
+    init() {
+        Publishers.CombineLatest4($inputImage, $effect, $background, $subjectPosition)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] inputImage, effect, background, subjectPosition in
+                self?.regenerate(usingInputImage: inputImage, effect: effect, background: background, subjectPosition: subjectPosition)
             }
             .store(in: &self.cancellables)
     }
@@ -112,27 +104,18 @@ final class EffectsPipeline: ObservableObject {
         // Asynchronously process each image
         DispatchQueue.global(qos: .userInitiated).async {
            guard let files = try? fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil) else {
+                DispatchQueue.main.async {
                 completion()
+                    }  
                 return
-            }
-                        
-            for fileURL in files {
-                if let ciImage = CIImage(contentsOf: fileURL), self.isImage(url: fileURL) {
-                    self.inputImage = ciImage
-                    self.effect = .none // for later
-                    self.background = .transparent
-                    // processImage() applies the effect to inputImage and sets output
-                    
-                    // Wait until the image is processed before continuing??????????
-                    while self.inputImage != nil && self.output == nil {
-                        usleep(10000) // Adjust the sleep time if needed
-                    }
-                }
-                let saveFilename = fileURL.deletingPathExtension().lastPathComponent + ".png"
-                let saveUrl = resultsFolderUrl.appendingPathComponent(saveFilename)
-
-                if let processedImage = self.output, let imageData = processedImage.pngData() {
-                    let saveUrl = resultsFolderUrl.appendingPathComponent(fileURL.lastPathComponent)
+            }         
+                 
+            for fileURL in files where self.isImage(url: fileURL) {
+                guard let ciImage = CIImage(contentsOf: fileURL) else { continue }
+                self.processImage(ciImage: ciImage) { processedImage in
+                    let saveFilename = fileURL.deletingPathExtension().lastPathComponent + ".png"
+                    let saveUrl = resultsFolderUrl.appendingPathComponent(saveFilename)
+                    guard let imageData = processedImage.pngData() else { return }
                     do {
                         try imageData.write(to: saveUrl)
                         print("Saved processed image to \(saveUrl.path)")
@@ -140,12 +123,15 @@ final class EffectsPipeline: ObservableObject {
                         print("Failed to save processed image: \(error.localizedDescription)")
                     }
                 }
-                self.output = nil
-                
-                
             }
+            DispatchQueue.main.async { completion() }
+        }
+    }
+    private func processImage(ciImage: CIImage, completion: @escaping (UIImage) -> Void) {
+        processingQueue.async {
+            let processedImage = UIImage(ciImage: ciImage) // Simplified for example; insert actual processing logic here
             DispatchQueue.main.async {
-                completion()
+                completion(processedImage)
             }
         }
     }
