@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		72304D5B2B9EF09700106E15 /* GIFProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72304D5A2B9EF09600106E15 /* GIFProcessor.swift */; };
 		7251BC1B2B9F508000ED76FA /* ContentGifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251BC1A2B9F508000ED76FA /* ContentGifView.swift */; };
 		7251BC1D2B9F630600ED76FA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251BC1C2B9F630600ED76FA /* MainView.swift */; };
 		726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597A82B9DAC640013E9E6 /* ViewController.swift */; };
@@ -20,7 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		72304D5A2B9EF09600106E15 /* GIFProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFProcessor.swift; sourceTree = "<group>"; };
 		7251BC1A2B9F508000ED76FA /* ContentGifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGifView.swift; sourceTree = "<group>"; };
 		7251BC1C2B9F630600ED76FA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = BackgroundRemover/MainView.swift; sourceTree = "<group>"; };
 		726597A72B9DAA230013E9E6 /* BackgroundRemover.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BackgroundRemover.entitlements; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 				D64A120129FB3EFC00549AC2 /* EffectsPipeline.swift */,
 				D64A11F729FB3D7900549AC2 /* Assets.xcassets */,
 				726597A82B9DAC640013E9E6 /* ViewController.swift */,
-				72304D5A2B9EF09600106E15 /* GIFProcessor.swift */,
 			);
 			path = BackgroundRemover;
 			sourceTree = "<group>";
@@ -165,7 +162,6 @@
 				D64A120229FB3EFC00549AC2 /* EffectsPipeline.swift in Sources */,
 				7251BC1D2B9F630600ED76FA /* MainView.swift in Sources */,
 				D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */,
-				72304D5B2B9EF09700106E15 /* GIFProcessor.swift in Sources */,
 				726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */,
 				726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */,
 				7251BC1B2B9F508000ED76FA /* ContentGifView.swift in Sources */,

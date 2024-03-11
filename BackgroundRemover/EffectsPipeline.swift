@@ -101,29 +101,23 @@ final class EffectsPipeline: ObservableObject {
             return
     }
         // Asynchronously process each image
-        DispatchQueue.global(qos: .userInitiated).async {
-           guard let files = try? fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil) else {
+    DispatchQueue.global(qos: .userInitiated).async {
+        guard let files = try? fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil) else {
                 completion()
-                return
+            return
             }
                         
-            for fileURL in files {
+        for fileURL in files {
                 if let ciImage = CIImage(contentsOf: fileURL), self.isImage(url: fileURL) {
                     self.inputImage = ciImage
                     self.effect = .none // for later
                     self.background = .transparent
-                    // processImage() applies the effect to inputImage and sets output
-                    
-//                    // Wait until the image is processed before continuing??????????
-//                    while self.inputImage != nil && self.output == nil {
-//                        usleep(10000) // Adjust the sleep time if needed
-//                    }
-              }
-                let saveFilename = fileURL.deletingPathExtension().lastPathComponent + ".png"
-                let saveUrl = resultsFolderUrl.appendingPathComponent(saveFilename)
-
-                if let processedImage = self.output, let imageData = processedImage.pngData() {
-                    let saveUrl = resultsFolderUrl.appendingPathComponent(fileURL.lastPathComponent)
+              
+            }  
+            let saveFilename = fileURL.deletingPathExtension().appendingPathExtension(for: .png)
+            let saveUrl = resultsFolderUrl.appendingPathComponent(fileURL.lastPathComponent)
+            
+            if let processedImage = self.output, let imageData = processedImage.pngData() {
                     do {
                         try imageData.write(to: saveUrl)
                         print("Saved processed image to \(saveUrl.path)")
@@ -131,13 +125,13 @@ final class EffectsPipeline: ObservableObject {
                         print("Failed to save processed image: \(error.localizedDescription)")
                     }
                 }
-                //  self.output = nil //might be an useless reset
+                // self.output = nil //might be an useless reset
             }
-             DispatchQueue.main.async {
-                completion()
+        DispatchQueue.main.async {
+            completion()
         }
     }
-    }
+ }   
 private func isImage(url: URL) -> Bool {
         let imageExtensions = ["jpg", "jpeg", "png", "gif", "tiff", "tif", "bmp"]
         return imageExtensions.contains(url.pathExtension.lowercased())
@@ -306,4 +300,5 @@ private func render(ciImage img: CIImage) -> CGImage {
     }
     return cgImage
 }
+
 

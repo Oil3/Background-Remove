@@ -29,7 +29,6 @@ struct ImageDocument: FileDocument { //this is necessary so far
 }
 struct ContentView: View {
     @StateObject private var pipeline = EffectsPipeline()
-    @StateObject private var gifProcessor = GIFProcessor()
     @State private var showFilePicker = false
     @State private var showSavePanel = false
     @State private var showFolderPicker = false
@@ -63,7 +62,7 @@ struct ContentView: View {
                     if let imageData = try? Data(contentsOf: url),
                        let ciImage = CIImage(data: imageData) {
                         pipeline.inputImage = ciImage
-                        pipeline.effect = .none // core task is background removal but this might be purposeful too
+                       // pipeline.effect = .none // core task is background removal but this might be purposeful too
                         pipeline.background = .transparent // This to trigger the background removal
                     }
                 case .failure(let error):
@@ -71,11 +70,11 @@ struct ContentView: View {
                 }
             }
 
-            Button("Save Result Image") {
-                if pipeline.output != nil {
-                    showSavePanel = true
-                }
-            }
+//            Button("Save Result Image") {
+//                if pipeline.output != nil {
+//                    showSavePanel = true
+//                }
+//            }
             .fileExporter(isPresented: $showSavePanel, document: ImageDocument(image: pipeline.output ?? UIImage()), contentType: .png) { result in
                 switch result {
                 case .success(let url):
@@ -85,21 +84,21 @@ struct ContentView: View {
                 }
             }
             
-            .fileImporter(
-                isPresented: $showGIFPicker,
-                allowedContentTypes: [.image], // Or a more specific type if desired
-                allowsMultipleSelection: false
-            ) { result in
-                switch result {
-                case .success(let urls):
-                    if let url = urls.first, url.pathExtension.lowercased() == "gif" {
-                        selectedGIFURL = url
-                        gifProcessor.loadGIF(url: url) // Load the selected GIF
-                    }
-                case .failure(let error):
-                    print("File selection error: \(error.localizedDescription)")
-                }
-            }
+//            .fileImporter(
+//                isPresented: $showGIFPicker,
+//                allowedContentTypes: [.image], // Or a more specific type if desired
+//                allowsMultipleSelection: false
+//            ) { result in
+//                switch result {
+//                case .success(let urls):
+//                    if let url = urls.first, url.pathExtension.lowercased() == "gif" {
+//                        selectedGIFURL = url
+//                        ContentGifView.extractGIFFrames(url) // Load the selected GIF
+//                    }
+//                case .failure(let error):
+//                    print("File selection error: \(error.localizedDescription)")
+//                }
+//            }
 
 //            Button("Process Folder") {
 //                showFolderPicker = true
