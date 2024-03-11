@@ -10,32 +10,26 @@
 		726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597A82B9DAC640013E9E6 /* ViewController.swift */; };
 		726597AB2B9DBA160013E9E6 /* VideoPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */; };
 		726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */; };
-		D64A11F429FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F329FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift */; };
+		D64A11F429FB3D7800549AC2 /* BackgroundRemoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F329FB3D7800549AC2 /* BackgroundRemoverApp.swift */; };
 		D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F529FB3D7800549AC2 /* ContentView.swift */; };
 		D64A11F829FB3D7900549AC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64A11F729FB3D7900549AC2 /* Assets.xcassets */; };
-		D64A11FB29FB3D7900549AC2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64A11FA29FB3D7900549AC2 /* Preview Assets.xcassets */; };
 		D64A120229FB3EFC00549AC2 /* EffectsPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A120129FB3EFC00549AC2 /* EffectsPipeline.swift */; };
 		D64BDDAD29FB4A5B0024942A /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D64BDDAC29FB4A5B0024942A /* sunset.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		726597A72B9DAA230013E9E6 /* SubjectLiftingEffects.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SubjectLiftingEffects.entitlements; sourceTree = "<group>"; };
+		726597A72B9DAA230013E9E6 /* BackgroundRemover.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BackgroundRemover.entitlements; sourceTree = "<group>"; };
 		726597A82B9DAC640013E9E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPipeline.swift; sourceTree = "<group>"; };
 		726597AE2B9E74070013E9E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
-		726597B12B9ECA170013E9E6 /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sunset.jpg; path = SubjectLiftingEffects/Images/sunset.jpg; sourceTree = "<group>"; };
-		9F31D77157C059BBBC8EBB33 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
-		D64A11F029FB3D7800549AC2 /* SubjectLiftingEffects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubjectLiftingEffects.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D64A11F329FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectLiftingEffectsApp.swift; sourceTree = "<group>"; };
+		D64A11F029FB3D7800549AC2 /* BackgroundRemover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackgroundRemover.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D64A11F329FB3D7800549AC2 /* BackgroundRemoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRemoverApp.swift; sourceTree = "<group>"; };
 		D64A11F529FB3D7800549AC2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D64A11F729FB3D7900549AC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D64A11FA29FB3D7900549AC2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D64A120129FB3EFC00549AC2 /* EffectsPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsPipeline.swift; sourceTree = "<group>"; };
 		D64BDDAC29FB4A5B0024942A /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.jpg; sourceTree = "<group>"; };
 		D66BEF3229FB462B0010F20F /* butterfly.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = butterfly.jpg; sourceTree = "<group>"; };
-		EAA5024138746ECF52A0D685 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,58 +43,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D1046398D77E46991068EDF0 /* LICENSE */ = {
-			isa = PBXGroup;
-			children = (
-				EAA5024138746ECF52A0D685 /* LICENSE.txt */,
-			);
-			path = LICENSE;
-			sourceTree = "<group>";
-		};
 		D64A11E729FB3D7800549AC2 = {
 			isa = PBXGroup;
 			children = (
-				726597B12B9ECA170013E9E6 /* sunset.jpg */,
-				9F31D77157C059BBBC8EBB33 /* README.md */,
-				D64A11F229FB3D7800549AC2 /* SubjectLiftingEffects */,
+				D64A11F229FB3D7800549AC2 /* BackgroundRemover */,
 				D64A11F129FB3D7800549AC2 /* Products */,
-				DFC37A9C686D51490B7C081B /* Configuration */,
-				D1046398D77E46991068EDF0 /* LICENSE */,
 			);
 			sourceTree = "<group>";
 		};
 		D64A11F129FB3D7800549AC2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D64A11F029FB3D7800549AC2 /* SubjectLiftingEffects.app */,
+				D64A11F029FB3D7800549AC2 /* BackgroundRemover.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D64A11F229FB3D7800549AC2 /* SubjectLiftingEffects */ = {
+		D64A11F229FB3D7800549AC2 /* BackgroundRemover */ = {
 			isa = PBXGroup;
 			children = (
 				726597AE2B9E74070013E9E6 /* Info.plist */,
-				726597A72B9DAA230013E9E6 /* SubjectLiftingEffects.entitlements */,
+				726597A72B9DAA230013E9E6 /* BackgroundRemover.entitlements */,
 				D66BEF2F29FB43710010F20F /* Images */,
-				D64A11F329FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift */,
+				D64A11F329FB3D7800549AC2 /* BackgroundRemoverApp.swift */,
 				726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */,
 				D64A11F529FB3D7800549AC2 /* ContentView.swift */,
 				726597A82B9DAC640013E9E6 /* ViewController.swift */,
 				D64A120129FB3EFC00549AC2 /* EffectsPipeline.swift */,
 				726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */,
 				D64A11F729FB3D7900549AC2 /* Assets.xcassets */,
-				D64A11F929FB3D7900549AC2 /* Preview Content */,
 			);
-			path = SubjectLiftingEffects;
-			sourceTree = "<group>";
-		};
-		D64A11F929FB3D7900549AC2 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				D64A11FA29FB3D7900549AC2 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
+			path = BackgroundRemover;
 			sourceTree = "<group>";
 		};
 		D66BEF2F29FB43710010F20F /* Images */ = {
@@ -112,20 +85,12 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		DFC37A9C686D51490B7C081B /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */,
-			);
-			name = Configuration;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D64A11EF29FB3D7800549AC2 /* SubjectLiftingEffects */ = {
+		D64A11EF29FB3D7800549AC2 /* BackgroundRemover */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D64A11FE29FB3D7900549AC2 /* Build configuration list for PBXNativeTarget "SubjectLiftingEffects" */;
+			buildConfigurationList = D64A11FE29FB3D7900549AC2 /* Build configuration list for PBXNativeTarget "BackgroundRemover" */;
 			buildPhases = (
 				D64A11EC29FB3D7800549AC2 /* Sources */,
 				D64A11ED29FB3D7800549AC2 /* Frameworks */,
@@ -135,9 +100,9 @@
 			);
 			dependencies = (
 			);
-			name = SubjectLiftingEffects;
+			name = BackgroundRemover;
 			productName = SubjectLiftingEffects;
-			productReference = D64A11F029FB3D7800549AC2 /* SubjectLiftingEffects.app */;
+			productReference = D64A11F029FB3D7800549AC2 /* BackgroundRemover.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -149,14 +114,14 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1530;
-				ORGANIZATIONNAME = Apple;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					D64A11EF29FB3D7800549AC2 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = D64A11EB29FB3D7800549AC2 /* Build configuration list for PBXProject "SubjectLiftingEffects" */;
+			buildConfigurationList = D64A11EB29FB3D7800549AC2 /* Build configuration list for PBXProject "BackgroundRemover" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -169,7 +134,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D64A11EF29FB3D7800549AC2 /* SubjectLiftingEffects */,
+				D64A11EF29FB3D7800549AC2 /* BackgroundRemover */,
 			);
 		};
 /* End PBXProject section */
@@ -180,7 +145,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D64BDDAD29FB4A5B0024942A /* sunset.jpg in Resources */,
-				D64A11FB29FB3D7900549AC2 /* Preview Assets.xcassets in Resources */,
 				D64A11F829FB3D7900549AC2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,7 +160,7 @@
 				D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */,
 				726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */,
 				726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */,
-				D64A11F429FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift in Sources */,
+				D64A11F429FB3D7800549AC2 /* BackgroundRemoverApp.swift in Sources */,
 				726597AB2B9DBA160013E9E6 /* VideoPipeline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,7 +170,6 @@
 /* Begin XCBuildConfiguration section */
 		D64A11FC29FB3D7900549AC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -262,6 +225,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oil3.BackgroundRemover;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -270,7 +234,6 @@
 		};
 		D64A11FD29FB3D7900549AC2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -319,6 +282,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oil3.BackgroundRemover;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -328,18 +292,17 @@
 		};
 		D64A11FF29FB3D7900549AC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SubjectLiftingEffects/SubjectLiftingEffects.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SubjectLiftingEffects/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 46WUYUUA8V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SubjectLiftingEffects/Info.plist;
+				INFOPLIST_FILE = BackgroundRemover/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -350,8 +313,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.SubjectLiftingEffects${SAMPLE_CODE_DISAMBIGUATOR}";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "com.example.apple-samplecode.backgr";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.oil3.BackgroundRemover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -366,18 +328,17 @@
 		};
 		D64A120029FB3D7900549AC2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SubjectLiftingEffects/SubjectLiftingEffects.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SubjectLiftingEffects/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 46WUYUUA8V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SubjectLiftingEffects/Info.plist;
+				INFOPLIST_FILE = BackgroundRemover/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -388,8 +349,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.SubjectLiftingEffects${SAMPLE_CODE_DISAMBIGUATOR}";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "com.example.apple-samplecode.backgr";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.oil3.BackgroundRemover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -405,7 +365,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D64A11EB29FB3D7800549AC2 /* Build configuration list for PBXProject "SubjectLiftingEffects" */ = {
+		D64A11EB29FB3D7800549AC2 /* Build configuration list for PBXProject "BackgroundRemover" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D64A11FC29FB3D7900549AC2 /* Debug */,
@@ -414,7 +374,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D64A11FE29FB3D7900549AC2 /* Build configuration list for PBXNativeTarget "SubjectLiftingEffects" */ = {
+		D64A11FE29FB3D7900549AC2 /* Build configuration list for PBXNativeTarget "BackgroundRemover" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D64A11FF29FB3D7900549AC2 /* Debug */,

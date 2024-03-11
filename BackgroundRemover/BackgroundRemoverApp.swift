@@ -1,10 +1,9 @@
-//SubjectLiftingEffectsApp.swift
+//BackgroundRemoverApp.swift
 
 import SwiftUI
 
-/// A main entry point for the app.
 @main
-struct SubjectLiftingEffectsApp: App {
+struct BackgroundRemoverApp: App {
 
     /// A pipeline to define as an environment object.
     @StateObject private var pipeline = EffectsPipeline()

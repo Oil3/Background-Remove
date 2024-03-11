@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D64A11EF29FB3D7800549AC2"
-               BuildableName = "SubjectLiftingEffects.app"
-               BlueprintName = "SubjectLiftingEffects"
-               ReferencedContainer = "container:SubjectLiftingEffects.xcodeproj">
+               BuildableName = "BackgroundRemover.app"
+               BlueprintName = "BackgroundRemover"
+               ReferencedContainer = "container:BackgroundRemover.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D64A11EF29FB3D7800549AC2"
-            BuildableName = "SubjectLiftingEffects.app"
-            BlueprintName = "SubjectLiftingEffects"
-            ReferencedContainer = "container:SubjectLiftingEffects.xcodeproj">
+            BuildableName = "BackgroundRemover.app"
+            BlueprintName = "BackgroundRemover"
+            ReferencedContainer = "container:BackgroundRemover.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D64A11EF29FB3D7800549AC2"
-            BuildableName = "SubjectLiftingEffects.app"
-            BlueprintName = "SubjectLiftingEffects"
-            ReferencedContainer = "container:SubjectLiftingEffects.xcodeproj">
+            BuildableName = "BackgroundRemover.app"
+            BlueprintName = "BackgroundRemover"
+            ReferencedContainer = "container:BackgroundRemover.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,10 +1,5 @@
 //
 //  ViewController.swift
-//  SubjectLiftingEffects
-//
-//  Created by ZZS on 10/03/2024.
-//  Copyright © 2024 Apple. All rights reserved.
-//
 
 import UIKit
 import Vision
