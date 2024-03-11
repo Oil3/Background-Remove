@@ -11,11 +11,15 @@ struct MainView: View {
             ContentGifView()
                 .tabItem {
                 Label("GIF", systemImage: "tray.and.arrow.down.fill")}
-
-//            ContentView()
-//                .environmentObject(pipeline)
-//                .tabItem {
-//                Label("Pictures", systemImage: "tray.and.arrow.down.fill")}
+                
+            ContentMovieView()
+                .tabItem {
+                Label("Movies", systemImage: "tray.and.arrow.up.fill")}
+            
+            ContentView()
+                .environmentObject(pipeline)
+                .tabItem {
+                Label("Pictures", systemImage: "tray.and.arrow.down.fill")}
         }
     }
 }
