@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597A82B9DAC640013E9E6 /* ViewController.swift */; };
 		726597AB2B9DBA160013E9E6 /* VideoPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */; };
+		726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */; };
 		D64A11F429FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F329FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift */; };
 		D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F529FB3D7800549AC2 /* ContentView.swift */; };
 		D64A11F829FB3D7900549AC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64A11F729FB3D7900549AC2 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		726597A82B9DAC640013E9E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		726597AA2B9DBA160013E9E6 /* VideoPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPipeline.swift; sourceTree = "<group>"; };
 		726597AE2B9E74070013E9E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		9F31D77157C059BBBC8EBB33 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		D64A11F029FB3D7800549AC2 /* SubjectLiftingEffects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubjectLiftingEffects.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 				726597A72B9DAA230013E9E6 /* SubjectLiftingEffects.entitlements */,
 				D66BEF2F29FB43710010F20F /* Images */,
 				D64A11F329FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift */,
+				726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */,
 				D64A11F529FB3D7800549AC2 /* ContentView.swift */,
 				726597A82B9DAC640013E9E6 /* ViewController.swift */,
 				D64A120129FB3EFC00549AC2 /* EffectsPipeline.swift */,
@@ -144,7 +147,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
 					D64A11EF29FB3D7800549AC2 = {
@@ -192,6 +195,7 @@
 				D64A120229FB3EFC00549AC2 /* EffectsPipeline.swift in Sources */,
 				D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */,
 				726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */,
+				726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */,
 				D64A11F429FB3D7800549AC2 /* SubjectLiftingEffectsApp.swift in Sources */,
 				726597AB2B9DBA160013E9E6 /* VideoPipeline.swift in Sources */,
 			);
@@ -205,6 +209,7 @@
 			baseConfigurationReference = C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -268,6 +273,7 @@
 			baseConfigurationReference = C2DC00D0D097D05088C6BBB9 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

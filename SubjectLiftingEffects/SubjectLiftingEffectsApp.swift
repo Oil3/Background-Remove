@@ -1,9 +1,4 @@
-/*
-See the LICENSE.txt file for this sample’s licensing information.
-
-Abstract:
-The subject-lifting effects app.
-*/
+//SubjectLiftingEffectsApp.swift
 
 import SwiftUI
 

@@ -35,16 +35,23 @@ struct ContentView: View {
     @State private var processingFolder = false
 
     var body: some View {
-        VStack {
+        NavigationView {
+            SidebarView(showFilePicker: $showFilePicker,
+                        showSavePanel: $showSavePanel,
+                        showFolderPicker: $showFolderPicker,
+                        processingFolder: $processingFolder)
+                        
             if let outputImage = pipeline.output {
                 Image(uiImage: outputImage)
                     .resizable()
                     .scaledToFit()
+            } else {
+                Text("Select an image or folder to begin.")
+                    .foregroundColor(.secondary)
             }
-
-            Button("Choose from Files") {
-                showFilePicker = true
-            }
+        }
+        .frame(minWidth: 700, minHeight: 500)
+        .navigationTitle("Background Remover")
             .fileImporter(isPresented: $showFilePicker, allowedContentTypes: [.image], allowsMultipleSelection: false) { result in
                 switch result {
                 case .success(let urls):
@@ -91,4 +98,4 @@ struct ContentView: View {
         }
     }
 }
-}
+
