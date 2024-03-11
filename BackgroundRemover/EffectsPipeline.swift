@@ -131,7 +131,7 @@ final class EffectsPipeline: ObservableObject {
                         print("Failed to save processed image: \(error.localizedDescription)")
                     }
                 }
-                self.output = nil //might be an useless reset
+                //  self.output = nil //might be an useless reset
             }
              DispatchQueue.main.async {
                 completion()
