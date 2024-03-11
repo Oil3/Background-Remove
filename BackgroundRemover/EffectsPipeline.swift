@@ -12,10 +12,11 @@ import AVFoundation
 
 /// Presets for the subjects' visual effects.
 enum Effect: String, Equatable, CaseIterable {
-    case none = "None"
     case highlight = "Highlight"
     case bokeh = "Bokeh Halo"
     case noir = "Noir"
+    case none = "None"
+
 }
 
 /// Presets for the background's visual effects.
@@ -102,6 +103,7 @@ final class EffectsPipeline: ObservableObject {
     }
         // Asynchronously process each image
     DispatchQueue.global(qos: .userInitiated).async {
+    
         guard let files = try? fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil) else {
                 completion()
             return
@@ -109,11 +111,12 @@ final class EffectsPipeline: ObservableObject {
                         
         for fileURL in files {
                 if let ciImage = CIImage(contentsOf: fileURL), self.isImage(url: fileURL) {
+                DispatchQueue.main.async {
                     self.inputImage = ciImage
                     self.effect = .none // for later
                     self.background = .transparent
               
-            }  
+            }}  
             let saveFilename = fileURL.deletingPathExtension().appendingPathExtension(for: .png)
             let saveUrl = resultsFolderUrl.appendingPathComponent(fileURL.lastPathComponent)
             
