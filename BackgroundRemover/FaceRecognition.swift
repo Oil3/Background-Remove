@@ -53,7 +53,7 @@ class FaceRecognition {
         return sqrt(distance)
     }
 
-    func isMatch(embedding1: MLMultiArray, embedding2: MLMultiArray, threshold: Double = 0.8) -> Bool {
+    func isMatch(embedding1: MLMultiArray, embedding2: MLMultiArray, threshold: Double =   0.8) -> Bool {
         let distance = calculateDistance(embedding1, embedding2)
         return distance < threshold
     }

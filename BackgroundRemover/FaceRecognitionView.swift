@@ -1,48 +1,65 @@
 import SwiftUI
 
 struct FaceRecognitionView: View {
-    @State private var resultText = "Select two photos to compare"
-    @State private var isImporterPresented = false
-    @State private var selectedImages: [UIImage] = []
+    @State private var resultText = "Select a photo and a folder to compare"
+    @State private var isImageImporterPresented = false
+    @State private var isFolderImporterPresented = false
+    @State private var selectedImage: UIImage?
+    @State private var folderURL: URL?
 
     var body: some View {
         VStack {
             Text(resultText)
                 .padding()
 
-            if selectedImages.count < 2 {
-                Button("Select Photo") {
-                    isImporterPresented = true
-                }
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(8)
-                .fileImporter(
-                    isPresented: $isImporterPresented,
-                    allowedContentTypes: [.image],
-                    allowsMultipleSelection: true
-                ) { result in
-                    switch result {
-                    case .success(let urls):
-                        for url in urls {
-                            if let image = UIImage(contentsOfFile: url.path) {
-                                selectedImages.append(image)
-                                if selectedImages.count == 2 {
-                                    compareFaces()
-                                }
-                            }
-                        }
-                    case .failure(let error):
-                        print(error.localizedDescription)
+            Button("Select Photo") {
+                isImageImporterPresented = true
+            }
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .fileImporter(
+                isPresented: $isImageImporterPresented,
+                allowedContentTypes: [.image],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    if let url = urls.first, let image = UIImage(contentsOfFile: url.path) {
+                        selectedImage = image
                     }
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-            } else {
-                Button("Compare Faces") {
-                    compareFaces()
+            }
+
+            Button("Select Folder") {
+                isFolderImporterPresented = true
+            }
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .fileImporter(
+                isPresented: $isFolderImporterPresented,
+                allowedContentTypes: [.folder],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    folderURL = urls.first
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+
+            if selectedImage != nil && folderURL != nil {
+                Button("Start Comparison") {
+                    compareFaceWithFolder()
                 }
                 .padding()
-                .background(Color.blue)
+                .background(Color.green)
                 .foregroundColor(.white)
                 .cornerRadius(8)
             }
@@ -50,28 +67,42 @@ struct FaceRecognitionView: View {
         .padding()
     }
 
-    func compareFaces() {
-        guard selectedImages.count == 2 else {
-            resultText = "Please select two photos"
+    func compareFaceWithFolder() {
+        guard let image = selectedImage, let folderURL = folderURL else {
+            resultText = "Please select a photo and a folder"
             return
         }
 
         let faceRecognition = FaceDetectandRec()
 
-        faceRecognition.extractEmbedding(from: selectedImages[0]) { testEmbedding in
+        faceRecognition.extractEmbedding(from: image) { testEmbedding in
             guard let testEmbedding = testEmbedding else {
-                resultText = "Failed to extract embedding from first photo"
+                resultText = "Failed to extract embedding from photo"
                 return
             }
 
-            faceRecognition.extractEmbedding(from: selectedImages[1]) { validateEmbedding in
-                guard let validateEmbedding = validateEmbedding else {
-                    resultText = "Failed to extract embedding from second photo"
-                    return
+            do {
+                let fileManager = FileManager.default
+                let contents = try fileManager.contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil)
+
+                for fileURL in contents {
+                    if let validateImage = UIImage(contentsOfFile: fileURL.path) {
+                        faceRecognition.extractEmbedding(from: validateImage) { validateEmbedding in
+                            guard let validateEmbedding = validateEmbedding else {
+                                print("Failed to extract embedding from \(fileURL.lastPathComponent)")
+                                return
+                            }
+
+                            let match = faceRecognition.isMatch(embedding1: testEmbedding, embedding2: validateEmbedding)
+                            print(match ? "Match found with \(fileURL.lastPathComponent)" : "No match found with \(fileURL.lastPathComponent)")
+                        }
+                    }
                 }
 
-                let match = faceRecognition.isMatch(embedding1: testEmbedding, embedding2: validateEmbedding)
-                resultText = match ? "Match found" : "No match found"
+                resultText = "Comparison completed. Check console for results."
+            } catch {
+                print("Error reading folder contents: \(error)")
+                resultText = "Error reading folder contents"
             }
         }
     }
