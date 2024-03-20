@@ -1,3 +1,5 @@
+//
+//FaceRecognitionView.swift
 import SwiftUI
 
 struct FaceRecognitionView: View {
@@ -73,9 +75,9 @@ struct FaceRecognitionView: View {
             return
         }
 
-        let faceRecognition = FaceDetectandRec()
+        let faceRecognition = FaceRecognition()
 
-        faceRecognition.extractEmbedding(from: image) { testEmbedding in
+        faceRecognition.alignAndExtractEmbedding(from: image, folderURL: folderURL) { testEmbedding in
             guard let testEmbedding = testEmbedding else {
                 resultText = "Failed to extract embedding from photo"
                 return
@@ -87,7 +89,7 @@ struct FaceRecognitionView: View {
 
                 for fileURL in contents {
                     if let validateImage = UIImage(contentsOfFile: fileURL.path) {
-                        faceRecognition.extractEmbedding(from: validateImage) { validateEmbedding in
+                        faceRecognition.alignAndExtractEmbedding(from: validateImage, folderURL: folderURL) { validateEmbedding in
                             guard let validateEmbedding = validateEmbedding else {
                                 print("Failed to extract embedding from \(fileURL.lastPathComponent)")
                                 return
@@ -105,7 +107,7 @@ struct FaceRecognitionView: View {
                 resultText = "Error reading folder contents"
             }
         }
-    }
+}
 }
 
 struct FaceRecognitionView_Previews: PreviewProvider {
