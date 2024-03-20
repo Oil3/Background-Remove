@@ -1,5 +1,3 @@
-//
-//FaceRecognitionView.swift
 import SwiftUI
 
 struct FaceRecognitionView: View {
@@ -69,44 +67,60 @@ struct FaceRecognitionView: View {
         .padding()
     }
 
-    func compareFaceWithFolder() {
-        guard let image = selectedImage, let folderURL = folderURL else {
-            resultText = "Please select a photo and a folder"
+func compareFaceWithFolder() {
+    guard let image = selectedImage, let folderURL = folderURL else {
+        resultText = "Please select a photo and a folder"
+        return
+    }
+
+    let faceRecognition = FaceRecognition()
+
+    faceRecognition.handleFaceRecognition(for: image) { processedImage in
+        guard let processedImage = processedImage else {
+            resultText = "Failed to process selected photo"
             return
         }
 
-        let faceRecognition = FaceRecognition()
+        // Save the processed selected image for debugging
+        faceRecognition.saveImage(processedImage, withName: "selected", index: 0, inSubfolder: "debug", within: folderURL)
 
-        faceRecognition.alignAndExtractEmbedding(from: image, folderURL: folderURL) { testEmbedding in
-            guard let testEmbedding = testEmbedding else {
-                resultText = "Failed to extract embedding from photo"
-                return
-            }
+        do {
+            let fileManager = FileManager.default
+            let contents = try fileManager.contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil)
+            var matchFound = false
 
-            do {
-                let fileManager = FileManager.default
-                let contents = try fileManager.contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil)
+            for (index, fileURL) in contents.enumerated() {
+                if let folderImage = UIImage(contentsOfFile: fileURL.path) {
+                    faceRecognition.handleFaceRecognition(for: folderImage) { folderProcessedImage in
+                        guard let folderProcessedImage = folderProcessedImage else {
+                            print("Failed to process image from \(fileURL.lastPathComponent)")
+                            return
+                        }
 
-                for fileURL in contents {
-                    if let validateImage = UIImage(contentsOfFile: fileURL.path) {
-                        faceRecognition.alignAndExtractEmbedding(from: validateImage, folderURL: folderURL) { validateEmbedding in
-                            guard let validateEmbedding = validateEmbedding else {
-                                print("Failed to extract embedding from \(fileURL.lastPathComponent)")
-                                return
-                            }
+                        // Save the processed image from the folder for debugging
+                        faceRecognition.saveImage(folderProcessedImage, withName: "processed_\(index)", index: index, inSubfolder: "debug", within: folderURL)
 
-                            let match = faceRecognition.isMatch(embedding1: testEmbedding, embedding2: validateEmbedding)
-                            print(match ? "Match found with \(fileURL.lastPathComponent)" : "No match found with \(fileURL.lastPathComponent)")
+                        // Check for a match
+                        let isMatch = faceRecognition.isMatch(embedding1: processedImage, embedding2: folderProcessedImage, threshold: 0.8)
+                        if isMatch {
+                            matchFound = true
+                            resultText = "Match found with \(fileURL.lastPathComponent)"
+                            print("Match found with \(fileURL.lastPathComponent)")
+                        } else {
+                            print("No match with \(fileURL.lastPathComponent)")
                         }
                     }
                 }
-
-                resultText = "Comparison completed. Check console for results."
-            } catch {
-                print("Error reading folder contents: \(error)")
-                resultText = "Error reading folder contents"
             }
+
+            if !matchFound {
+                resultText = "No match found in the folder"
+            }
+        } catch {
+            print("Error reading folder contents: \(error)")
+            resultText = "Error reading folder contents"
         }
+    }
 }
 }
 
