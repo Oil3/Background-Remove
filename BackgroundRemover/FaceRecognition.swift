@@ -25,10 +25,14 @@ class FaceRecognition {
                 return
             }
 
-            let alignedImage = self.alignFace(image: image, leftEye: leftEye, rightEye: rightEye)
-            let index = Int(Date().timeIntervalSince1970) // Use a timestamp as an index
-            self.saveImage(alignedImage, withName: "aligned_face", index: index, inSubfolder: "AlignedFaces", within: folderURL)
-            self.extractEmbedding(from: alignedImage, completion: completion)
+            if let alignedImage = self.alignFace(image: image, leftPupil: leftEye, rightPupil: rightEye) {
+                let index = Int(Date().timeIntervalSince1970) // Use a timestamp as an index
+                self.saveImage(alignedImage, withName: "aligned_face", index: index, inSubfolder: "AlignedFaces", within: folderURL)
+                self.extractEmbedding(from: alignedImage, completion: completion)
+            } else {
+        // If alignedImage is nil, do not execute the code and call the completion with nil
+        completion(nil)
+            }   
         }
 
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
@@ -71,27 +75,44 @@ class FaceRecognition {
         return resizedFace
     }
 
-    func alignFace(image: UIImage, leftEye: CGPoint, rightEye: CGPoint) -> UIImage {
-        let desiredLeftEyePosition = CGPoint(x: 0.35, y: 0.35)
-        let desiredRightEyePosition = CGPoint(x: 0.65, y: 0.35)
+    func alignFace(image: UIImage, leftPupil: CGPoint, rightPupil: CGPoint) -> UIImage? {
+        let size = image.size
 
-        let angle = atan2(rightEye.y - leftEye.y, rightEye.x - leftEye.x)
-        let distance = sqrt(pow(rightEye.x - leftEye.x, 2) + pow(rightEye.y - leftEye.y, 2))
-        let desiredDistance = (desiredRightEyePosition.x - desiredLeftEyePosition.x)
-        let scale = desiredDistance / distance
+        UIGraphicsBeginImageContextWithOptions(size, false, image.scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
 
-        var transform = CGAffineTransform.identity
-        transform = transform.translatedBy(x: image.size.width / 2, y: image.size.height / 2)
-        transform = transform.rotated(by: angle)
-        transform = transform.scaledBy(x: scale, y: scale)
-        transform = transform.translatedBy(x: -image.size.width / 2, y: -image.size.height / 2)
+        // Move the origin to the middle of the left and right pupils
+        let eyeCenter = CGPoint(x: (leftPupil.x + rightPupil.x) / 2.0, y: (leftPupil.y + rightPupil.y) / 2.0)
+        context.translateBy(x: eyeCenter.x * size.width, y: eyeCenter.y * size.height)
 
-        let rotatedImage = image.applying(transform)
-        let croppedImage = rotatedImage.cropped(to: CGRect(x: (rotatedImage.size.width - 160) / 2, y: (rotatedImage.size.height - 160) / 2, width: 160, height: 160))!
+        // Rotate the context
+        let angle = atan2(rightPupil.y - leftPupil.y, rightPupil.x - leftPupil.x)
+        context.rotate(by: -angle)
 
-        return croppedImage
+        // Translate back
+        context.translateBy(x: -eyeCenter.x * size.width, y: -eyeCenter.y * size.height)
+
+        // Draw the image in the context
+        image.draw(at: CGPoint(x: 0, y: 0))
+
+        // Retrieve the transformed image from the context
+        let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        // Crop the rotated image to the desired size centered on the eye center
+        let cropRect = CGRect(
+            x: (size.width - 160) / 2.0,
+            y: (size.height - 160) / 2.0,
+            width: 160,
+            height: 160
+        ).integral
+
+        // Return the cropped image
+        return rotatedImage?.cropped(to: cropRect)
     }
 
+
+    
     func saveImage(_ image: UIImage, withName baseName: String, index: Int, inSubfolder subfolderName: String, within folderURL: URL) {
         guard let data = image.pngData() else { return }
 
@@ -194,3 +215,12 @@ extension UIImage {
     }
 }
     
+//extension VNFaceLandmarks2D {
+//    var leftPupil: CGPoint? {
+//        return self.pupils?.normalizedPoints.first
+//    }
+//
+//    var rightPupil: CGPoint? {
+//        return self.pupils?.normalizedPoints.last
+//    }
+//}
