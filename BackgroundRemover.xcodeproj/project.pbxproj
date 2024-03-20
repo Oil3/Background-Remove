@@ -12,6 +12,10 @@
 		7251BC1F2B9FBEBE00ED76FA /* ContentMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251BC1E2B9FBEBE00ED76FA /* ContentMovieView.swift */; };
 		726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597A82B9DAC640013E9E6 /* ViewController.swift */; };
 		726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */; };
+		726D77372BAA91A6002C23FB /* FaceRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726D77362BAA91A6002C23FB /* FaceRecognition.swift */; };
+		726D77392BAA91D6002C23FB /* facenet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 726D77382BAA91D6002C23FB /* facenet.mlmodel */; };
+		726D773B2BAA93D7002C23FB /* FaceRecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726D773A2BAA93D7002C23FB /* FaceRecognitionView.swift */; };
+		726D773D2BAA9829002C23FB /* FaceDetectandRec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726D773C2BAA9829002C23FB /* FaceDetectandRec.swift */; };
 		D64A11F429FB3D7800549AC2 /* BackgroundRemoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F329FB3D7800549AC2 /* BackgroundRemoverApp.swift */; };
 		D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64A11F529FB3D7800549AC2 /* ContentView.swift */; };
 		D64A11F829FB3D7900549AC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64A11F729FB3D7900549AC2 /* Assets.xcassets */; };
@@ -27,6 +31,10 @@
 		726597A82B9DAC640013E9E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		726597AE2B9E74070013E9E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		726597AF2B9EC1FF0013E9E6 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		726D77362BAA91A6002C23FB /* FaceRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceRecognition.swift; path = BackgroundRemover/FaceRecognition.swift; sourceTree = "<group>"; };
+		726D77382BAA91D6002C23FB /* facenet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = facenet.mlmodel; path = BackgroundRemover/facenet.mlmodel; sourceTree = "<group>"; };
+		726D773A2BAA93D7002C23FB /* FaceRecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceRecognitionView.swift; path = BackgroundRemover/FaceRecognitionView.swift; sourceTree = "<group>"; };
+		726D773C2BAA9829002C23FB /* FaceDetectandRec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceDetectandRec.swift; path = BackgroundRemover/FaceDetectandRec.swift; sourceTree = "<group>"; };
 		D64A11F029FB3D7800549AC2 /* BackgroundRemover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackgroundRemover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D64A11F329FB3D7800549AC2 /* BackgroundRemoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRemoverApp.swift; sourceTree = "<group>"; };
 		D64A11F529FB3D7800549AC2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,7 +58,11 @@
 		D64A11E729FB3D7800549AC2 = {
 			isa = PBXGroup;
 			children = (
+				726D77362BAA91A6002C23FB /* FaceRecognition.swift */,
+				726D773A2BAA93D7002C23FB /* FaceRecognitionView.swift */,
+				726D773C2BAA9829002C23FB /* FaceDetectandRec.swift */,
 				7251BC1C2B9F630600ED76FA /* MainView.swift */,
+				726D77382BAA91D6002C23FB /* facenet.mlmodel */,
 				D64A11F229FB3D7800549AC2 /* BackgroundRemover */,
 				D64A11F129FB3D7800549AC2 /* Products */,
 			);
@@ -165,10 +177,14 @@
 				D64A120229FB3EFC00549AC2 /* EffectsPipeline.swift in Sources */,
 				7251BC1D2B9F630600ED76FA /* MainView.swift in Sources */,
 				D64A11F629FB3D7800549AC2 /* ContentView.swift in Sources */,
+				726D77392BAA91D6002C23FB /* facenet.mlmodel in Sources */,
+				726D77372BAA91A6002C23FB /* FaceRecognition.swift in Sources */,
 				726597A92B9DAC640013E9E6 /* ViewController.swift in Sources */,
+				726D773D2BAA9829002C23FB /* FaceDetectandRec.swift in Sources */,
 				726597B02B9EC1FF0013E9E6 /* SidebarView.swift in Sources */,
 				7251BC1B2B9F508000ED76FA /* ContentGifView.swift in Sources */,
 				D64A11F429FB3D7800549AC2 /* BackgroundRemoverApp.swift in Sources */,
+				726D773B2BAA93D7002C23FB /* FaceRecognitionView.swift in Sources */,
 				7251BC1F2B9FBEBE00ED76FA /* ContentMovieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

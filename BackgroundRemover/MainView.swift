@@ -8,6 +8,10 @@ struct MainView: View {
     
     var body: some View {
         TabView {
+            FaceRecognitionView()
+                .tabItem {
+                Label("CHECK", systemImage: "faxmachine")}
+                
             ContentGifView()
                 .tabItem {
                 Label("GIF", systemImage: "tray.and.arrow.down.fill")}
